@@ -12,7 +12,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(title: Text('ORAE APP'),),
       body: Container(
         alignment: Alignment.center,
-        child: Text("ORAE APP"),
+        child: Text("ORAE APP", style: Theme.of(context).textTheme.body1),
       ),
     );
   }

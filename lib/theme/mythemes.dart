@@ -9,6 +9,7 @@ class MyThemes{
   static final bodyTextSize = 16.0;
 
   static final String fontNameDefault = 'Font-M';
+  static final String fontNameBold = 'Font-B';
 
   static final ThemeData lightThemeBase = ThemeData.light();
   static final ThemeData lightTheme = ThemeData(

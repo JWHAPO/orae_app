@@ -24,8 +24,10 @@ class _CalendarState extends State<Calendar> {
 
   @override
   Widget build(BuildContext context) {
+
     return TableCalendar(
       calendarController: _calendarController,
+      locale: 'en_US',
     );
   }
 }

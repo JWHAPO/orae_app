@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class Calendar extends StatefulWidget {
@@ -25,9 +26,22 @@ class _CalendarState extends State<Calendar> {
   @override
   Widget build(BuildContext context) {
 
+    print(Intl.getCurrentLocale());
+
     return TableCalendar(
       calendarController: _calendarController,
       locale: 'en_US',
+      initialCalendarFormat: CalendarFormat.month,
+      formatAnimation: FormatAnimation.slide,
+      startingDayOfWeek: StartingDayOfWeek.sunday,
+      headerStyle: HeaderStyle(
+        formatButtonVisible: false,
+        centerHeaderTitle: true,
+        titleTextBuilder: (date, locale) => DateFormat.MMMM(locale).format(date),
+      ),
+      daysOfWeekStyle: DaysOfWeekStyle(
+        dowTextBuilder: (date, locale) => DateFormat.E(locale).format(date)[0],
+      ),
     );
   }
 }

@@ -37,10 +37,14 @@ class _CalendarState extends State<Calendar> {
       headerStyle: HeaderStyle(
         formatButtonVisible: false,
         centerHeaderTitle: true,
-        titleTextBuilder: (date, locale) => DateFormat.MMMM(locale).format(date),
+        titleTextBuilder: (date, locale){
+          return DateFormat.yMMM(locale).format(date);
+        },
       ),
       daysOfWeekStyle: DaysOfWeekStyle(
-        dowTextBuilder: (date, locale) => DateFormat.E(locale).format(date)[0],
+        dowTextBuilder: (date, locale){
+          return DateFormat.E(locale).format(date);
+        },
       ),
     );
   }

@@ -8,12 +8,21 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
-
+  Map<DateTime, List> _events;
   CalendarController _calendarController;
 
   @override
   void initState() {
     super.initState();
+
+    final _selectedDay = DateTime.now();
+
+    _events = {
+      _selectedDay.subtract(Duration(days: 1)): ['Event A6', 'Event B6'],
+      _selectedDay: ['Event A7', 'Event B7', 'Event C7', 'Event D7'],
+      _selectedDay.add(Duration(days: 1)): ['Event A8', 'Event B8', 'Event C8', 'Event D8'],
+    };
+
     _calendarController = CalendarController();
   }
 
@@ -26,14 +35,13 @@ class _CalendarState extends State<Calendar> {
   @override
   Widget build(BuildContext context) {
 
-    print(Intl.getCurrentLocale());
-
     return TableCalendar(
       calendarController: _calendarController,
       locale: 'en_US',
       initialCalendarFormat: CalendarFormat.month,
       formatAnimation: FormatAnimation.slide,
       startingDayOfWeek: StartingDayOfWeek.sunday,
+      events: _events,
       headerStyle: HeaderStyle(
         formatButtonVisible: false,
         centerHeaderTitle: true,

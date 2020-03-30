@@ -3,15 +3,11 @@ import 'package:flutter/material.dart';
 
 import '../ui/home.dart';
 
-
-
 class Router{
   static Route<dynamic> generateRoute(RouteSettings settings){
     switch(settings.name){
       case '/':
         return FadeRoute(page: HomePage());
-//      case 'splash':
-//        return FadeRoute(page: SplashPage());
 
       default:
         return MaterialPageRoute(builder: (_) {

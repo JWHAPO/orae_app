@@ -16,11 +16,13 @@ class _CalendarState extends State<Calendar> {
     super.initState();
 
     final _selectedDay = DateTime.now();
+    var date1 = DateTime.parse('2020-03-31T00:00:00Z');
+    var date2 = DateTime.parse('2020-03-29T00:00:00Z');
 
     _events = {
-      _selectedDay.subtract(Duration(days: 1)): ['Event A6', 'Event B6'],
+      date1: ['Event A6', 'Event B6'],
       _selectedDay: ['Event A7', 'Event B7', 'Event C7', 'Event D7'],
-      _selectedDay.add(Duration(days: 1)): ['Event A8', 'Event B8', 'Event C8', 'Event D8'],
+      date2: ['Event A8', 'Event B8', 'Event C8', 'Event D8'],
     };
 
     _calendarController = CalendarController();

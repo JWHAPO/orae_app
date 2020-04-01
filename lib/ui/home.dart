@@ -16,8 +16,21 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             Text("ORAE APP", style: Theme.of(context).textTheme.body1),
             Calendar(),
+            scheduleList()
           ],
         )
+      ),
+    );
+  }
+
+  Widget scheduleList(){
+    return Container(
+      child: ListView.builder(
+        itemBuilder: (context, position){
+          return Container(
+            child: Text('$position'),
+          );
+        },
       ),
     );
   }

@@ -27,11 +27,13 @@ class _HomePageState extends State<HomePage> {
     return Container(
       child: ListView.builder(
         itemBuilder: (context, position){
-          return Container(
-            child: Text('$position'),
+          return ListTile(
+            title: Text('$position'),
+            subtitle: Text('$position'),
           );
         },
       ),
     );
   }
+
 }

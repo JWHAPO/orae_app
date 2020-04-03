@@ -56,9 +56,17 @@ Users _$UsersFromJson(Map<String, dynamic> json) {
         ?.map(
             (e) => e == null ? null : User.fromJson(e as Map<String, dynamic>))
         ?.toList(),
+    json['page'] as int,
+    json['totalResults'] as int,
+    json['totalPages'] as int,
+    (json['errors'] as List)?.map((e) => e as String)?.toList(),
   );
 }
 
 Map<String, dynamic> _$UsersToJson(Users instance) => <String, dynamic>{
       'users': instance.users,
+      'page': instance.page,
+      'totalResults': instance.totalResults,
+      'totalPages': instance.totalPages,
+      'errors': instance.errors,
     };

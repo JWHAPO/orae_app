@@ -4,11 +4,9 @@ import 'dart:convert';
 import 'dart:async';
 
 import 'package:oraeapp/domain/user.dart';
+import 'package:oraeapp/constants/api_constants.dart';
 
 class Api{
-
-  static const BASE_URL = 'http://api.test.com';
-  static const Map<String, String> headers = {"Content-type": "application/json", };
 
   static String getUrlUsers() => BASE_URL+'/user';
 

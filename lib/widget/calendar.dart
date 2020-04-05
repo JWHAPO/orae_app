@@ -65,6 +65,32 @@ class _CalendarState extends State<Calendar> {
           return DateFormat.E(locale).format(date);
         },
       ),
+      builders: CalendarBuilders(
+        markersBuilder: (context, date, events, holidays){
+          final children = <Widget>[];
+
+          if(events.isNotEmpty){
+            children.add(
+              Positioned(
+                right: 1,
+                bottom: 1,
+                child: _buildEventsMarker(date, events),
+              )
+            );
+          }
+
+          if(holidays.isNotEmpty){
+            children.add(
+              Positioned(
+                right: -2,
+                top: -2,
+                child: _buildHolidaysMarker(),
+              )
+            );
+          }
+          return children;
+        }
+      ),
     );
   }
 
@@ -82,6 +108,31 @@ class _CalendarState extends State<Calendar> {
           onTap: () => print('$event tapped!'),
         ),
       )).toList(),
+    );
+  }
+
+  Widget _buildEventsMarker(DateTime date, List events){
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        color: _calendarController.isSelected(date)
+          ? Colors.brown[500]
+            : _calendarController.isToday(date) ? Colors.brown[300] : Colors.blue[400],
+      ),
+      width: 16.0,
+      height: 16.0,
+      child: Center(
+        child: Text('${events.length}', style: TextStyle().copyWith(color: Colors.white, fontSize: 12.0),),
+      ),
+    );
+  }
+
+  Widget _buildHolidaysMarker() {
+    return Icon(
+      Icons.add_box,
+      size: 20.0,
+      color: Colors.blueGrey[800],
     );
   }
 }

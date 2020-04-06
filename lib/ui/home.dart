@@ -12,12 +12,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(title: Text('ORAE APP'),),
       body: Container(
-        child: Column(
-          children: <Widget>[
-            Text("ORAE APP", style: Theme.of(context).textTheme.body1),
-            Calendar(),
-          ],
-        )
+        child: Calendar(),
       ),
     );
   }

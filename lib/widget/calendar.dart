@@ -45,52 +45,59 @@ class _CalendarState extends State<Calendar> {
   @override
   Widget build(BuildContext context) {
 
-    return TableCalendar(
-      calendarController: _calendarController,
-      locale: 'en_US',
-      initialCalendarFormat: CalendarFormat.month,
-      formatAnimation: FormatAnimation.slide,
-      startingDayOfWeek: StartingDayOfWeek.sunday,
-      events: _events,
-      onDaySelected: _onDaySelected,
-      headerStyle: HeaderStyle(
-        formatButtonVisible: false,
-        centerHeaderTitle: true,
-        titleTextBuilder: (date, locale){
-          return DateFormat.yMMM(locale).format(date);
-        },
-      ),
-      daysOfWeekStyle: DaysOfWeekStyle(
-        dowTextBuilder: (date, locale){
-          return DateFormat.E(locale).format(date);
-        },
-      ),
-      builders: CalendarBuilders(
-        markersBuilder: (context, date, events, holidays){
-          final children = <Widget>[];
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      children: <Widget>[
+        TableCalendar(
+          calendarController: _calendarController,
+          locale: 'en_US',
+          initialCalendarFormat: CalendarFormat.month,
+          formatAnimation: FormatAnimation.slide,
+          startingDayOfWeek: StartingDayOfWeek.sunday,
+          events: _events,
+          onDaySelected: _onDaySelected,
+          headerStyle: HeaderStyle(
+            formatButtonVisible: false,
+            centerHeaderTitle: true,
+            titleTextBuilder: (date, locale){
+              return DateFormat.yMMM(locale).format(date);
+            },
+          ),
+          daysOfWeekStyle: DaysOfWeekStyle(
+            dowTextBuilder: (date, locale){
+              return DateFormat.E(locale).format(date);
+            },
+          ),
+          builders: CalendarBuilders(
+            markersBuilder: (context, date, events, holidays){
+              final children = <Widget>[];
 
-          if(events.isNotEmpty){
-            children.add(
-              Positioned(
-                right: 1,
-                bottom: 1,
-                child: _buildEventsMarker(date, events),
-              )
-            );
-          }
+              if(events.isNotEmpty){
+                children.add(
+                  Positioned(
+                    right: 1,
+                    bottom: 1,
+                    child: _buildEventsMarker(date, events),
+                  )
+                );
+              }
 
-          if(holidays.isNotEmpty){
-            children.add(
-              Positioned(
-                right: -2,
-                top: -2,
-                child: _buildHolidaysMarker(),
-              )
-            );
-          }
-          return children;
-        }
-      ),
+              if(holidays.isNotEmpty){
+                children.add(
+                  Positioned(
+                    right: -2,
+                    top: -2,
+                    child: _buildHolidaysMarker(),
+                  )
+                );
+              }
+              return children;
+            }
+          ),
+        ),
+        const SizedBox(height: 8.0,),
+        Expanded(child: _buildEventList(),)
+      ],
     );
   }
 

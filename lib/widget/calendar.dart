@@ -12,6 +12,10 @@ class _CalendarState extends State<Calendar> {
   Map<DateTime, List> _events;
   CalendarController _calendarController;
 
+  final Map<DateTime, List> _holidays = {
+    DateTime.parse('2020-05-05T00:00:00Z'):['Children Day']
+  };
+
   @override
   void initState() {
     super.initState();
@@ -55,6 +59,7 @@ class _CalendarState extends State<Calendar> {
           formatAnimation: FormatAnimation.slide,
           startingDayOfWeek: StartingDayOfWeek.sunday,
           events: _events,
+          holidays: _holidays,
           onDaySelected: _onDaySelected,
           headerStyle: HeaderStyle(
             formatButtonVisible: false,
@@ -106,10 +111,10 @@ class _CalendarState extends State<Calendar> {
       children: _selectedEvents.map((event) =>
       Container(
         decoration: BoxDecoration(
-          border: Border.all(width: 0.8),
-          borderRadius: BorderRadius.circular(12.0),
+          border: Border.all(width: 0.4),
+          borderRadius: BorderRadius.circular(8.0),
         ),
-        margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+        margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
         child: ListTile(
           title: Text(event.toString()),
           onTap: () => print('$event tapped!'),

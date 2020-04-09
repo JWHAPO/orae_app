@@ -101,7 +101,58 @@ class _CalendarState extends State<Calendar> {
           ),
         ),
         const SizedBox(height: 8.0,),
+        _buildButtons(),
+        const SizedBox(height: 8.0,),
         Expanded(child: _buildEventList(),)
+      ],
+    );
+  }
+
+  Widget _buildButtons() {
+    final dateTime = _events.keys.elementAt(_events.length - 2);
+
+    return Column(
+      children: <Widget>[
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            RaisedButton(
+              child: Text('Month'),
+              onPressed: () {
+                setState(() {
+                  _calendarController.setCalendarFormat(CalendarFormat.month);
+                });
+              },
+            ),
+            RaisedButton(
+              child: Text('2 weeks'),
+              onPressed: () {
+                setState(() {
+                  _calendarController.setCalendarFormat(CalendarFormat.twoWeeks);
+                });
+              },
+            ),
+            RaisedButton(
+              child: Text('Week'),
+              onPressed: () {
+                setState(() {
+                  _calendarController.setCalendarFormat(CalendarFormat.week);
+                });
+              },
+            ),
+          ],
+        ),
+        const SizedBox(height: 8.0),
+        RaisedButton(
+          child: Text('Set day ${dateTime.day}-${dateTime.month}-${dateTime.year}'),
+          onPressed: () {
+            _calendarController.setSelectedDay(
+              DateTime(dateTime.year, dateTime.month, dateTime.day),
+              runCallback: true,
+            );
+          },
+        ),
       ],
     );
   }

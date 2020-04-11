@@ -61,6 +61,8 @@ class _CalendarState extends State<Calendar> {
           events: _events,
           holidays: _holidays,
           onDaySelected: _onDaySelected,
+          onVisibleDaysChanged: _onVisibleDaysChanged,
+          onCalendarCreated: _onCalendarCreated,
           headerStyle: HeaderStyle(
             formatButtonVisible: false,
             centerHeaderTitle: true,
@@ -198,4 +200,13 @@ class _CalendarState extends State<Calendar> {
       color: Colors.blueGrey[800],
     );
   }
+
+  void _onVisibleDaysChanged(DateTime first, DateTime last, CalendarFormat format) {
+    print('CALLBACK: _onVisibleDaysChanged');
+  }
+
+  void _onCalendarCreated(DateTime first, DateTime last, CalendarFormat format) {
+    print('CALLBACK: _onCalendarCreated');
+  }
+
 }

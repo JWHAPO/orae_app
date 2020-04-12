@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:oraeapp/widget/calendar.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -11,9 +10,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('ORAE APP'),),
-      body: Container(
-        child: Calendar(),
-      ),
+      body: Column(
+        children: <Widget>[
+
+        ],
+      )
     );
   }
 

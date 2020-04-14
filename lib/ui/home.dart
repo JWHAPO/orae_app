@@ -14,7 +14,8 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           Text("Next Schedule", style: TextStyle(fontSize: 24.0),),
           scheduleIcon(),
-          scheduleIcon1()
+          scheduleIcon1(),
+          scheduleIcon2()
         ],
       )
     );
@@ -55,6 +56,28 @@ class _HomePageState extends State<HomePage> {
       ),
       alignment: Alignment.bottomCenter,
     ),
+    );
+  }
+
+  Widget scheduleIcon2(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        new Container(
+            width: 190.0,
+            height: 190.0,
+            decoration: new BoxDecoration(
+                shape: BoxShape.circle,
+                image: new DecorationImage(
+                    fit: BoxFit.fitHeight,
+                    image: new NetworkImage(
+                        "https://www.geek.com/wp-content/uploads/2018/08/HAUNTED-MASK-large-preview-625x352.png")
+                )
+            )),
+        new Text("Nightmare",
+            textScaleFactor: 1.5)
+      ],
     );
   }
 

@@ -65,10 +65,14 @@ class _HomePageState extends State<HomePage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         new Container(
-            width: 190.0,
-            height: 190.0,
+            width: MediaQuery.of(context).size.width * 0.3,
+            height: MediaQuery.of(context).size.width * 0.3,
             decoration: new BoxDecoration(
                 shape: BoxShape.circle,
+                border: Border.all(
+                  width: 5.0,
+                  color: Colors.blueGrey
+                ),
                 image: new DecorationImage(
                     fit: BoxFit.fitHeight,
                     image: new NetworkImage(

@@ -7,12 +7,15 @@ class PageViewTest extends StatelessWidget {
       children: <Widget>[
         Container(
           color: Colors.pink,
+          child: Text('Page1'),
         ),
         Container(
           color: Colors.cyan,
+          child: Text('Page2'),
         ),
         Container(
           color: Colors.deepPurple,
+          child: Text('Page3'),
         ),
       ],
     );

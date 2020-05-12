@@ -13,7 +13,28 @@ class PageViewTest extends StatelessWidget {
       constraints: const BoxConstraints.expand(),
       child: Container(
         color: Colors.pink,
-        child: Text('Page1'),
+        child: DraggableScrollableSheet(
+          initialChildSize: 0.3,
+          minChildSize: 0.1,
+          maxChildSize: 0.8,
+          builder: (BuildContext context, myscrollController){
+            return Container(
+              color: Colors.tealAccent[200],
+              child: ListView.builder(
+                controller: myscrollController,
+                itemCount: 25,
+                itemBuilder: (BuildContext context, int index){
+                  return ListTile(
+                    title: Text(
+                      'Dish $index',
+                      style: TextStyle(color: Colors.black54),
+                    ),
+                  );
+                },
+              ),
+            );
+          },
+        )
       ),
     ),
     ConstrainedBox(
@@ -34,36 +55,43 @@ class PageViewTest extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconTheme(
-      data: IconThemeData(color: _kArrowColor),
-      child: Stack(
-        children: <Widget>[
-          PageView.builder(
-            physics: AlwaysScrollableScrollPhysics(),
-            controller: _controller,
-            itemBuilder: (BuildContext context, int index){
-              return _pages[index % _pages.length];
-            },
-          ),
-          Positioned(
-            bottom: 0.0,
-            left: 0.0,
-            right: 0.0,
-            child: Container(
-              color: Colors.grey[800].withOpacity(0.5),
-              padding: EdgeInsets.all(20.0),
-              child: Center(
-                child: DotsIndicator(
-                  controller: _controller,
-                  itemCount: _pages.length,
-                  onPageSelected: (int page){
-                    _controller.animateToPage(page, duration: _kDuration, curve: _kCurve);
-                  },
-                ),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('DraggableScrollableSheet'),
+        ),
+        body: IconTheme(
+          data: IconThemeData(color: _kArrowColor),
+          child: Stack(
+            children: <Widget>[
+              PageView.builder(
+                physics: AlwaysScrollableScrollPhysics(),
+                controller: _controller,
+                itemBuilder: (BuildContext context, int index){
+                  return _pages[index % _pages.length];
+                },
               ),
-            ),
-          )
-        ],
+              Positioned(
+                bottom: 0.0,
+                left: 0.0,
+                right: 0.0,
+                child: Container(
+                  color: Colors.grey[800].withOpacity(0.5),
+                  padding: EdgeInsets.all(20.0),
+                  child: Center(
+                    child: DotsIndicator(
+                      controller: _controller,
+                      itemCount: _pages.length,
+                      onPageSelected: (int page){
+                        _controller.animateToPage(page, duration: _kDuration, curve: _kCurve);
+                      },
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

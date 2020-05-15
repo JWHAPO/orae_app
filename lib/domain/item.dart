@@ -16,10 +16,12 @@ class Item{
   String maker;
   @JsonKey(name: "averageExpectancy")
   String averageExpectancy;
+  @JsonKey(name: "regDate")
+  String regDate;
 
 
   Item(this.itemId, this.name, this.description, this.modelNo, this.maker,
-      this.averageExpectancy);
+      this.averageExpectancy, this.regDate);
 
   factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
   Map<String, dynamic> toJson() => _$ItemToJson(this);

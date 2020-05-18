@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: MyThemes.getThemeFromKey(MyThemeKeys.LIGHT),
       onGenerateRoute: Router.generateRoute,
-      initialRoute: 'pageview',
+      initialRoute: '/',
     );
   }
 }

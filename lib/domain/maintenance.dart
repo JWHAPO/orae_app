@@ -39,12 +39,12 @@ class Maintenances{
   @JsonKey(name: "errors")
   List<String> errors;
 
-  Maintenances(this.items, this.page, this.totalResults, this.totalPages, this.errors);
+  Maintenances(this.maintenances, this.page, this.totalResults, this.totalPages, this.errors);
 
   bool get isEmpty => !hasMaintenances();
 
   bool hasMaintenances(){
-    return items != null && items.length > 0;
+    return maintenances != null && maintenances.length > 0;
   }
 
   bool hasErrors(){

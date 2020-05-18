@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'dialog/fancy_dialog.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -84,7 +86,9 @@ class _HomePageState extends State<HomePage> {
         InkWell(
           child: Text('Click '),
           onTap: (){
-            showFancyCustomDialog(context);
+            showFancyCustomDialog(context, "제목", "내용입니다.",(){
+              print('확인을 눌렀습니다.');
+            });
           },
         )
 
@@ -92,105 +96,8 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void showFancyCustomDialog(BuildContext context) {
-    Dialog fancyDialog = Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12.0),
-      ),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        height: 300.0,
-        width: 300.0,
-        child: Stack(
-          children: <Widget>[
-            Container(
-              width: double.infinity,
-              height: 300,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12.0),
-              ),
-              alignment: Alignment.center,
-              child: Text('This is Contents!!!', style: TextStyle(color: Colors.black),),
-            ),
-            Container(
-              width: double.infinity,
-              height: 50,
-              alignment: Alignment.bottomCenter,
-              decoration: BoxDecoration(
-                color: Colors.grey[500],
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(12),
-                  topRight: Radius.circular(12),
-                ),
-              ),
-              child: Align(
-                alignment: Alignment.center,
-                child: Text(
-                  "Title",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600),
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  width: double.infinity,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: Colors.blue[300],
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(12),
-                      bottomRight: Radius.circular(12),
-                    ),
-                  ),
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Okay",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Align(
-              // These values are based on trial & error method
-              alignment: Alignment(1.05, -1.05),
-              child: InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Icon(
-                    Icons.close,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-    showDialog(
-        context: context, builder: (BuildContext context) => fancyDialog);
+  void aa(int a){
+    print('$a aaa');
   }
 
 }

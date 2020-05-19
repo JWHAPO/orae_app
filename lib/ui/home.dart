@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
         InkWell(
           child: Text('Click '),
           onTap: (){
-            showFancyCustomDialog(context, "제목", "내용입니다.",(){
+            showFancyCustomDialog(context, "확인요청", "야근을 하였으니 푹 쉬시길 바라며, 내일은 꼭 하고싶은 일들을 하십시오.",(){
               print('확인을 눌렀습니다.');
             });
           },

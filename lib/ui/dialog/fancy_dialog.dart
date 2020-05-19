@@ -23,15 +23,24 @@ void showFancyCustomDialog(BuildContext context, String title, String descriptio
               color: Colors.white,
               borderRadius: BorderRadius.circular(borderRadius),
             ),
-            alignment: Alignment.center,
-            child: Text(description, style: TextStyle(color: Colors.black),),
+            alignment: Alignment.topLeft,
+            padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 60),
+            child: RichText(
+              text: TextSpan(
+                children: <TextSpan>[
+                  TextSpan(text: title, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 18)),
+                  TextSpan(text: '\n\n'),
+                  TextSpan(text: description,style: TextStyle(fontWeight: FontWeight.w300, color: Colors.black87, fontSize: 14))
+                ]
+              ),
+            ),
           ),
           Container(
             width: double.infinity,
-            height: 50,
+            height: 40,
             alignment: Alignment.bottomCenter,
             decoration: BoxDecoration(
-              color: Colors.grey[500],
+              color: Colors.blue[300],
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(borderRadius),
                 topRight: Radius.circular(borderRadius),
@@ -39,13 +48,11 @@ void showFancyCustomDialog(BuildContext context, String title, String descriptio
             ),
             child: Align(
               alignment: Alignment.center,
-              child: Text(
-                title,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600),
-              ),
+              child: Icon(
+                Icons.check,
+                color: Colors.white,
+                size: 30.0,
+              )
             ),
           ),
           Align(
@@ -68,7 +75,7 @@ void showFancyCustomDialog(BuildContext context, String title, String descriptio
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    "확인",
+                    "OK",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
@@ -83,5 +90,5 @@ void showFancyCustomDialog(BuildContext context, String title, String descriptio
     ),
   );
   showDialog(
-      context: context, builder: (BuildContext context) => fancyDialog);
+      context: context, barrierDismissible: false, builder: (BuildContext context) => fancyDialog);
 }

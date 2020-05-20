@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'dialog/fancy_dialog.dart';
+import 'tab/bottom_navigation_items.dart';
+import 'package:oraeapp/constants/strings.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,96 +9,32 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _selectedTabIndex = 0;
+
+  void _changeIndex(int index) {
+    setState(() {
+      _selectedTabIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('ORAE APP'),),
-      body: Column(
-        children: <Widget>[
-          Text("Next Schedule", style: TextStyle(fontSize: 24.0),),
-          scheduleIcon(),
-          scheduleIcon1(),
-          scheduleIcon2()
-        ],
-      )
-    );
-  }
-
-  Widget scheduleIcon(){
-    return Container(
-      width: MediaQuery.of(context).size.width * 0.3,
-      height: MediaQuery.of(context).size.width * 0.3,
-      child: Column(
-        children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Image.network('https://www.geek.com/wp-content/uploads/2018/08/HAUNTED-MASK-large-preview-625x352.png'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget scheduleIcon1(){
-    return Container(
-      decoration: ShapeDecoration(
-          image: DecorationImage(
-              image: NetworkImage('https://www.geek.com/wp-content/uploads/2018/08/HAUNTED-MASK-large-preview-625x352.png'),
-              fit: BoxFit.fitHeight),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadiusDirectional.circular(8.0))),
-      width: MediaQuery.of(context).size.width * 0.3,
-      height: MediaQuery.of(context).size.width * 0.3,
-      child: Align(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-              "Container decoration implements rounded corners (radius = 20)",
-              style: TextStyle(color: Colors.white),
+      appBar: AppBar(
+        title: Text(
+          APP_NAME,
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
-      alignment: Alignment.bottomCenter,
-    ),
+      body: Center(
+        child: pages[_selectedTabIndex],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedTabIndex,
+        onTap: _changeIndex,
+        type: BottomNavigationBarType.fixed,
+        items: bottomNavigationItems,
+      ),
     );
   }
-
-  Widget scheduleIcon2(){
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Container(
-            width: MediaQuery.of(context).size.width * 0.3,
-            height: MediaQuery.of(context).size.width * 0.3,
-            decoration: new BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  width: 5.0,
-                  color: Colors.blueGrey
-                ),
-                image: new DecorationImage(
-                    fit: BoxFit.fitHeight,
-                    image: new NetworkImage(
-                        "https://www.geek.com/wp-content/uploads/2018/08/HAUNTED-MASK-large-preview-625x352.png")
-                )
-            )),
-        Text("Nightmare",
-            textScaleFactor: 1.5),
-        InkWell(
-          child: Text('Click '),
-          onTap: (){
-            showFancyCustomDialog(context, "확인요청", "야근을 하였으니 푹 쉬시길 바라며, 내일은 꼭 하고싶은 일들을 하십시오.",(){
-              print('확인을 눌렀습니다.');
-            });
-          },
-        )
-
-      ],
-    );
-  }
-
-  void aa(int a){
-    print('$a aaa');
-  }
-
 }

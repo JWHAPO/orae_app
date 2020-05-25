@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class SlidingCard extends StatelessWidget {
   final String name;
   final String date;
-  final String assetName;
+  final String imgUrl;
 
-  const SlidingCard({Key key, @required this.name, @required this.date, @required this.assetName}) : super(key: key);
+  const SlidingCard({Key key, @required this.name, @required this.date, @required this.imgUrl}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +17,10 @@ class SlidingCard extends StatelessWidget {
         children: <Widget>[
           ClipRRect(
             borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
-            child: Image.asset(
-              'assets/resources/$assetName',
+            child: Image.network(
+              imgUrl,
               height: MediaQuery.of(context).size.height * 0.3,
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
             ),
           ),
           SizedBox(height: 8,),
@@ -54,7 +54,7 @@ class CardContent extends StatelessWidget {
             children: <Widget>[
               RaisedButton(
                 color: Color(0xFF162A49),
-                child: Text('Reserve'),
+                child: Text('Check'),
                 textColor: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(32),

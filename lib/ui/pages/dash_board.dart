@@ -11,8 +11,7 @@ class DashBoardPage extends StatefulWidget {
 class _DashBoardPageState extends State<DashBoardPage> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
+    return Container(
         padding: const EdgeInsets.all(12.0),
         child: Column(
           children: <Widget>[
@@ -26,23 +25,23 @@ class _DashBoardPageState extends State<DashBoardPage> {
               ],
             ),
             SizedBox(height: 10.0,),
-            SlidingCardsView(),
-            Container(
-              height: 200,
-              child: ListView(
-                children: <Widget>[
-                  itemList("https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80", "title1", "subTitle1"),
-                  itemList("https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80", "title2", "subTitle1"),
-                  itemList("https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80", "title3", "subTitle1"),
-                  itemList("https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80", "title5", "subTitle1"),
-                  itemList("https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80", "title6", "subTitle1"),
-                  itemList("https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80", "title7", "subTitle1"),
-                ],
+//            SlidingCardsView(),
+            Expanded(
+              child: Container(
+                child: ListView(
+                  children: <Widget>[
+                    itemList(context,"https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80", "title1", "subTitle1"),
+                    itemList(context,"https://images.unsplash.com/photo-1472457897821-70d3819a0e24?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2249&q=80", "title2", "subTitle1"),
+                    itemList(context,"https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80", "title3", "subTitle1"),
+                    itemList(context,"https://images.unsplash.com/photo-1472457897821-70d3819a0e24?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2249&q=80", "title5", "subTitle1"),
+                    itemList(context,"https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80", "title6", "subTitle1"),
+                    itemList(context,"https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80", "title7", "subTitle1"),
+                  ],
+                ),
               ),
             )
           ],
         )
-      ),
     );
   }
 }

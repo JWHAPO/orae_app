@@ -30,7 +30,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
           children: <Widget>[
             Row(
               children: <Widget>[
-                InkWell(
+                GestureDetector(
                   onTap: (){
                     _pageController.jumpToPage(0);
                   },
@@ -47,7 +47,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                 SizedBox(
                   width: 10.0,
                 ),
-                InkWell(
+                GestureDetector(
                   onTap: (){
                     _pageController.jumpToPage(1);
                   },
@@ -64,7 +64,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                 SizedBox(
                   width: 10.0,
                 ),
-                InkWell(
+                GestureDetector(
                   onTap: (){
                     _pageController.jumpToPage(2);
                   },

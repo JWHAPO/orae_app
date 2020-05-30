@@ -8,8 +8,42 @@ class DashBoardPage extends StatefulWidget {
 
 class _DashBoardPageState extends State<DashBoardPage> {
 
+  ScrollController _scrollController = ScrollController();
   PageController _pageController = PageController();
   int currentPage = 0;
+
+  List<String> titles = [
+    "TITLE-1",
+    "TITLE-2",
+    "TITLE-3",
+    "TITLE-4",
+    "TITLE-5",
+    "TITLE-6",
+    "TITLE-7",
+    "TITLE-8"
+  ];
+
+  List<String> subTitles = [
+    "SUB - TITLE-1",
+    "SUB - TITLE-2",
+    "SUB - TITLE-3",
+    "SUB - TITLE-4",
+    "SUB - TITLE-5",
+    "SUB - TITLE-6",
+    "SUB - TITLE-7",
+    "SUB - TITLE-8"
+  ];
+
+  List<String> urls_1 = [
+    "https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80",
+    "https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80",
+    "https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80",
+    "https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80",
+    "https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80",
+    "https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80",
+    "https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80",
+    "https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80",
+  ];
 
   @override
   void initState() {
@@ -105,39 +139,11 @@ class _DashBoardPageState extends State<DashBoardPage> {
   Widget _buildPage(int position) {
     switch (position) {
       case 0:
-        return ListView(
-          children: <Widget>[
-            itemList(
-                context,
-                "https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80",
-                "title1",
-                "subTitle1"),
-            itemList(
-                context,
-                "https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80",
-                "title2",
-                "subTitle1"),
-            itemList(
-                context,
-                "https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80",
-                "title3",
-                "subTitle1"),
-            itemList(
-                context,
-                "https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80",
-                "title5",
-                "subTitle1"),
-            itemList(
-                context,
-                "https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80",
-                "title6",
-                "subTitle1"),
-            itemList(
-                context,
-                "https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80",
-                "title7",
-                "subTitle1"),
-          ],
+        return ListView.builder(
+          itemCount: urls_1.length,
+          itemBuilder: (BuildContext context, int index){
+            return itemList(context,urls_1[index],titles[index],subTitles[index]);
+          }
         );
       case 1:
         return ListView(

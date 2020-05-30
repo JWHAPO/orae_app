@@ -12,42 +12,14 @@ class _DashBoardPageState extends State<DashBoardPage> {
   PageController _pageController = PageController();
   int currentPage = 0;
 
-  List<String> titles = [
-    "TITLE-1",
-    "TITLE-2",
-    "TITLE-3",
-    "TITLE-4",
-    "TITLE-5",
-    "TITLE-6",
-    "TITLE-7",
-    "TITLE-8"
-  ];
-
-  List<String> subTitles = [
-    "SUB - TITLE-1",
-    "SUB - TITLE-2",
-    "SUB - TITLE-3",
-    "SUB - TITLE-4",
-    "SUB - TITLE-5",
-    "SUB - TITLE-6",
-    "SUB - TITLE-7",
-    "SUB - TITLE-8"
-  ];
-
-  List<String> urls_1 = [
-    "https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80",
-    "https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80",
-    "https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80",
-    "https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80",
-    "https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80",
-    "https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80",
-    "https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80",
-    "https://images.unsplash.com/photo-1508640622828-7375eaf31253?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80",
-  ];
+  List<String> titles = List();
+  List<String> subTitles = List();
+  List<String> urls = List();
 
   @override
   void initState() {
     super.initState();
+    fetch();
 
     _scrollController.addListener(() {
       if(_scrollController.position.pixels == _scrollController.position.maxScrollExtent ){
@@ -147,10 +119,10 @@ class _DashBoardPageState extends State<DashBoardPage> {
     switch (position) {
       case 0:
         return ListView.builder(
-          itemCount: urls_1.length,
+          itemCount: urls.length,
           controller: _scrollController,
           itemBuilder: (BuildContext context, int index){
-            return itemList(context,urls_1[index],titles[index],subTitles[index]);
+            return itemList(context,urls[index],titles[index],subTitles[index]);
           }
         );
       case 1:
@@ -231,7 +203,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
     setState(() {
 
       for(int i = 0; i < 5; i++){
-        urls_1.add("https://images.unsplash.com/photo-1498579687545-d5a4fffb0a9e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80");
+        urls.add("https://images.unsplash.com/photo-1498579687545-d5a4fffb0a9e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80");
         titles.add("타이틀");
         subTitles.add("서브타이틀");
       }

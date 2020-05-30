@@ -48,10 +48,17 @@ class _DashBoardPageState extends State<DashBoardPage> {
   @override
   void initState() {
     super.initState();
+
+    _scrollController.addListener(() {
+      if(_scrollController.position.pixels == _scrollController.position.maxScrollExtent ){
+        fetch();
+      }
+    });
   }
 
   @override
   void dispose() {
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -141,6 +148,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
       case 0:
         return ListView.builder(
           itemCount: urls_1.length,
+          controller: _scrollController,
           itemBuilder: (BuildContext context, int index){
             return itemList(context,urls_1[index],titles[index],subTitles[index]);
           }
@@ -217,5 +225,17 @@ class _DashBoardPageState extends State<DashBoardPage> {
           ],
         );
     }
+  }
+
+  fetch() async{
+    setState(() {
+
+      for(int i = 0; i < 5; i++){
+        urls_1.add("https://images.unsplash.com/photo-1498579687545-d5a4fffb0a9e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80");
+        titles.add("타이틀");
+        subTitles.add("서브타이틀");
+      }
+
+    });
   }
 }

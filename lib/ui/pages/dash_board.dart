@@ -41,13 +41,13 @@ class _DashBoardPageState extends State<DashBoardPage> {
 
     _recentlyScrollController.addListener(() {
       if(_recentlyScrollController.position.pixels == _recentlyScrollController.position.maxScrollExtent ){
-        fetchStar();
+        fetchRecently();
       }
     });
 
     _recommendScrollController.addListener(() {
       if(_recommendScrollController.position.pixels == _recommendScrollController.position.maxScrollExtent ){
-        fetchStar();
+        fetchRecommend();
       }
     });
   }

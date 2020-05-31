@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:oraeapp/ui/page_view.dart';
+import 'package:oraeapp/ui/pages/item_detail.dart';
 
 import '../ui/home.dart';
 
@@ -9,6 +10,8 @@ class Router{
     switch(settings.name){
       case '/':
         return FadeRoute(page: HomePage());
+      case 'item_detail':
+        return FadeRoute(page: ItemDetailPage(data: settings.arguments,));
       case 'pageview':
         return FadeRoute(page: PageViewTest());
 

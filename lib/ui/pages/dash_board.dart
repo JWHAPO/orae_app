@@ -8,29 +8,53 @@ class DashBoardPage extends StatefulWidget {
 
 class _DashBoardPageState extends State<DashBoardPage> {
 
-  ScrollController _scrollController = ScrollController();
+  ScrollController _starScrollController = ScrollController();
+  ScrollController _recentlyScrollController = ScrollController();
+  ScrollController _recommendScrollController = ScrollController();
   PageController _pageController = PageController();
   int currentPage = 0;
 
-  List<String> titles = List();
-  List<String> subTitles = List();
-  List<String> urls = List();
+  List<String> starTitles = List();
+  List<String> starSubTitles = List();
+  List<String> starImages = List();
+
+  List<String> recentlyTitles = List();
+  List<String> recentlySubTitles = List();
+  List<String> recentlyImages = List();
+
+  List<String> recommendTitles = List();
+  List<String> recommendSubTitles = List();
+  List<String> recommendImages = List();
 
   @override
   void initState() {
     super.initState();
-    fetch();
+    fetchStar();
+    fetchRecently();
+    fetchRecommend();
 
-    _scrollController.addListener(() {
-      if(_scrollController.position.pixels == _scrollController.position.maxScrollExtent ){
-        fetch();
+    _starScrollController.addListener(() {
+      if(_starScrollController.position.pixels == _starScrollController.position.maxScrollExtent ){
+        fetchStar();
+      }
+    });
+
+    _recentlyScrollController.addListener(() {
+      if(_recentlyScrollController.position.pixels == _recentlyScrollController.position.maxScrollExtent ){
+        fetchStar();
+      }
+    });
+
+    _recommendScrollController.addListener(() {
+      if(_recommendScrollController.position.pixels == _recommendScrollController.position.maxScrollExtent ){
+        fetchStar();
       }
     });
   }
 
   @override
   void dispose() {
-    _scrollController.dispose();
+    _starScrollController.dispose();
     super.dispose();
   }
 
@@ -46,6 +70,10 @@ class _DashBoardPageState extends State<DashBoardPage> {
                 GestureDetector(
                   onTap: (){
                     _pageController.jumpToPage(0);
+                    starImages.clear();
+                    starTitles.clear();
+                    starSubTitles.clear();
+                    fetchStar();
                   },
                   child: Text(
                     'Star',
@@ -63,6 +91,10 @@ class _DashBoardPageState extends State<DashBoardPage> {
                 GestureDetector(
                   onTap: (){
                     _pageController.jumpToPage(1);
+                    recentlyImages.clear();
+                    recentlyTitles.clear();
+                    recentlySubTitles.clear();
+                    fetchRecently();
                   },
                   child: Text(
                     'Recently',
@@ -80,6 +112,10 @@ class _DashBoardPageState extends State<DashBoardPage> {
                 GestureDetector(
                   onTap: (){
                     _pageController.jumpToPage(2);
+                    recommendImages.clear();
+                    recommendTitles.clear();
+                    recommendSubTitles.clear();
+                    fetchRecommend();
                   },
                   child: Text(
                     'Recommend',
@@ -119,95 +155,59 @@ class _DashBoardPageState extends State<DashBoardPage> {
     switch (position) {
       case 0:
         return ListView.builder(
-          itemCount: urls.length,
-          controller: _scrollController,
+          itemCount: starImages.length,
+          controller: _starScrollController,
           itemBuilder: (BuildContext context, int index){
-            return itemList(context,urls[index],titles[index],subTitles[index]);
+            return itemList(context,starImages[index],starTitles[index],starSubTitles[index]);
           }
         );
       case 1:
-        return ListView(
-          children: <Widget>[
-            itemList(
-                context,
-                "https://images.unsplash.com/photo-1472457897821-70d3819a0e24?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2249&q=80",
-                "title1",
-                "subTitle1"),
-            itemList(
-                context,
-                "https://images.unsplash.com/photo-1472457897821-70d3819a0e24?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2249&q=80",
-                "title2",
-                "subTitle1"),
-            itemList(
-                context,
-                "https://images.unsplash.com/photo-1472457897821-70d3819a0e24?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2249&q=80",
-                "title3",
-                "subTitle1"),
-            itemList(
-                context,
-                "https://images.unsplash.com/photo-1472457897821-70d3819a0e24?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2249&q=80",
-                "title5",
-                "subTitle1"),
-            itemList(
-                context,
-                "https://images.unsplash.com/photo-1472457897821-70d3819a0e24?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2249&q=80",
-                "title6",
-                "subTitle1"),
-            itemList(
-                context,
-                "https://images.unsplash.com/photo-1472457897821-70d3819a0e24?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2249&q=80",
-                "title7",
-                "subTitle1"),
-          ],
+        return ListView.builder(
+            itemCount: recentlyImages.length,
+            controller: _recentlyScrollController,
+            itemBuilder: (BuildContext context, int index){
+              return itemList(context,recentlyImages[index],recentlyTitles[index],recentlySubTitles[index]);
+            }
         );
       case 2:
       default:
-        return ListView(
-          children: <Widget>[
-            itemList(
-                context,
-                "https://images.unsplash.com/photo-1498579687545-d5a4fffb0a9e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
-                "title1",
-                "subTitle1"),
-            itemList(
-                context,
-                "https://images.unsplash.com/photo-1498579687545-d5a4fffb0a9e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
-                "title2",
-                "subTitle1"),
-            itemList(
-                context,
-                "https://images.unsplash.com/photo-1498579687545-d5a4fffb0a9e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
-                "title3",
-                "subTitle1"),
-            itemList(
-                context,
-                "https://images.unsplash.com/photo-1498579687545-d5a4fffb0a9e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
-                "title5",
-                "subTitle1"),
-            itemList(
-                context,
-                "https://images.unsplash.com/photo-1498579687545-d5a4fffb0a9e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
-                "title6",
-                "subTitle1"),
-            itemList(
-                context,
-                "https://images.unsplash.com/photo-1498579687545-d5a4fffb0a9e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80",
-                "title7",
-                "subTitle1"),
-          ],
-        );
+      return ListView.builder(
+          itemCount: recommendImages.length,
+          controller: _recommendScrollController,
+          itemBuilder: (BuildContext context, int index){
+            return itemList(context,recommendImages[index],recommendTitles[index],recommendSubTitles[index]);
+          }
+      );
     }
   }
 
-  fetch() async{
+  fetchStar() async{
     setState(() {
-
       for(int i = 0; i < 5; i++){
-        urls.add("https://images.unsplash.com/photo-1498579687545-d5a4fffb0a9e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80");
-        titles.add("타이틀");
-        subTitles.add("서브타이틀");
+        starImages.add("https://images.all-free-download.com/images/graphiclarge/small_cookies_184538.jpg");
+        starTitles.add("좋아요 순 타이틀");
+        starSubTitles.add("좋아요 순 서브타이틀,좋아요 순 서브타이틀,좋아요 순 서브타이틀,좋아요 순 서브타이틀,좋아요 순 서브타이틀");
       }
+    });
+  }
 
+  fetchRecently() async{
+    setState(() {
+      for(int i = 0; i < 5; i++){
+        recentlyImages.add("https://images.all-free-download.com/images/graphiclarge/two_small_birds_515951.jpg");
+        recentlyTitles.add("최근 순 타이틀");
+        recentlySubTitles.add("최근 순 서브타이틀,최근 순 서브타이틀,최근 순 서브타이틀,최근 순 서브타이틀,최근 순 서브타이틀");
+      }
+    });
+  }
+
+  fetchRecommend() async{
+    setState(() {
+      for(int i = 0; i < 5; i++){
+        recommendImages.add("https://images.all-free-download.com/images/graphiclarge/goa_small_bird_202958.jpg");
+        recommendTitles.add("추천 순 타이틀");
+        recommendSubTitles.add("추천 순 서브타이틀,추천 순 서브타이틀,추천 순 서브타이틀,추천 순 서브타이틀,추천 순 서브타이틀");
+      }
     });
   }
 }

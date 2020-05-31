@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 Widget itemList(BuildContext context, String imgUrl, String title, String subTitle){
 
   return Container(
+    padding: const EdgeInsets.only(left: 4, right: 4),
     child: Column(
       children: <Widget>[
         SizedBox(

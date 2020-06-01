@@ -11,7 +11,7 @@ class Router{
       case '/':
         return FadeRoute(page: HomePage());
       case 'item_detail':
-        return FadeRoute(page: ItemDetailPage(data: settings.arguments,));
+        return FadeRoute(page: ItemDetailPage(item: settings.arguments,));
       case 'pageview':
         return FadeRoute(page: PageViewTest());
 

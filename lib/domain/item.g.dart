@@ -13,6 +13,8 @@ Item _$ItemFromJson(Map<String, dynamic> json) {
     json['description'] as String,
     json['modelNo'] as String,
     json['maker'] as String,
+    json['mainImage'] as String,
+    (json['images'] as List)?.map((e) => e as String)?.toList(),
     json['averageExpectancy'] as String,
     json['regDate'] as String,
   );
@@ -24,6 +26,8 @@ Map<String, dynamic> _$ItemToJson(Item instance) => <String, dynamic>{
       'description': instance.description,
       'modelNo': instance.modelNo,
       'maker': instance.maker,
+      'mainImage': instance.mainImage,
+      'images': instance.images,
       'averageExpectancy': instance.averageExpectancy,
       'regDate': instance.regDate,
     };

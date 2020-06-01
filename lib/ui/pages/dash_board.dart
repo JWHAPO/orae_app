@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oraeapp/domain/item.dart';
 import 'package:oraeapp/ui/widgets/item_list.dart';
 
 class DashBoardPage extends StatefulWidget {
@@ -12,19 +13,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
   ScrollController _recentlyScrollController = ScrollController();
   ScrollController _recommendScrollController = ScrollController();
   PageController _pageController = PageController();
+
   int currentPage = 0;
 
-  List<String> starTitles = List();
-  List<String> starSubTitles = List();
-  List<String> starImages = List();
-
-  List<String> recentlyTitles = List();
-  List<String> recentlySubTitles = List();
-  List<String> recentlyImages = List();
-
-  List<String> recommendTitles = List();
-  List<String> recommendSubTitles = List();
-  List<String> recommendImages = List();
+  List<Item> itemsByStar = List();
+  List<Item> itemsByRecently = List();
+  List<Item> itemsByRecommend = List();
 
   @override
   void initState() {
@@ -58,6 +52,12 @@ class _DashBoardPageState extends State<DashBoardPage> {
     super.dispose();
   }
 
+  void clearList(){
+    itemsByStar.clear();
+    itemsByRecently.clear();
+    itemsByRecommend.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -70,9 +70,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                 GestureDetector(
                   onTap: (){
                     _pageController.jumpToPage(0);
-                    starImages.clear();
-                    starTitles.clear();
-                    starSubTitles.clear();
+                    clearList();
                     fetchStar();
                   },
                   child: Text(
@@ -91,9 +89,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                 GestureDetector(
                   onTap: (){
                     _pageController.jumpToPage(1);
-                    recentlyImages.clear();
-                    recentlyTitles.clear();
-                    recentlySubTitles.clear();
+                    clearList();
                     fetchRecently();
                   },
                   child: Text(
@@ -112,9 +108,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                 GestureDetector(
                   onTap: (){
                     _pageController.jumpToPage(2);
-                    recommendImages.clear();
-                    recommendTitles.clear();
-                    recommendSubTitles.clear();
+                    clearList();
                     fetchRecommend();
                   },
                   child: Text(
@@ -155,27 +149,27 @@ class _DashBoardPageState extends State<DashBoardPage> {
     switch (position) {
       case 0:
         return ListView.builder(
-          itemCount: starImages.length,
+          itemCount: itemsByStar.length,
           controller: _starScrollController,
           itemBuilder: (BuildContext context, int index){
-            return itemList(context,starImages[index],starTitles[index],starSubTitles[index]);
+            return itemList(context,itemsByStar[index]);
           }
         );
       case 1:
         return ListView.builder(
-            itemCount: recentlyImages.length,
+            itemCount: itemsByRecently.length,
             controller: _recentlyScrollController,
             itemBuilder: (BuildContext context, int index){
-              return itemList(context,recentlyImages[index],recentlyTitles[index],recentlySubTitles[index]);
+              return itemList(context,itemsByRecently[index]);
             }
         );
       case 2:
       default:
       return ListView.builder(
-          itemCount: recommendImages.length,
+          itemCount: itemsByRecommend.length,
           controller: _recommendScrollController,
           itemBuilder: (BuildContext context, int index){
-            return itemList(context,recommendImages[index],recommendTitles[index],recommendSubTitles[index]);
+            return itemList(context,itemsByRecommend[index]);
           }
       );
     }
@@ -184,9 +178,21 @@ class _DashBoardPageState extends State<DashBoardPage> {
   fetchStar() async{
     setState(() {
       for(int i = 0; i < 5; i++){
-        starImages.add("https://images.all-free-download.com/images/graphiclarge/small_cookies_184538.jpg");
-        starTitles.add("좋아요 순 타이틀");
-        starSubTitles.add("좋아요 순 서브타이틀,좋아요 순 서브타이틀,좋아요 순 서브타이틀,좋아요 순 서브타이틀,좋아요 순 서브타이틀");
+        itemsByStar.add(
+          Item(itemsByStar.length,
+              "물건입니다.$i",
+              "이 물건은 블라블라블라 $i",
+              "M-001$i",
+              "나이키$i",
+              "https://images.all-free-download.com/images/graphiclarge/small_cookies_184538.jpg",
+              [
+                "https://images.all-free-download.com/images/graphiclarge/small_cookies_184538.jpg",
+                "https://images.all-free-download.com/images/graphiclarge/small_cookies_184538.jpg",
+                "https://images.all-free-download.com/images/graphiclarge/small_cookies_184538.jpg"
+              ],
+              "4개월",
+              "2020-05-31")
+        );
       }
     });
   }
@@ -194,9 +200,21 @@ class _DashBoardPageState extends State<DashBoardPage> {
   fetchRecently() async{
     setState(() {
       for(int i = 0; i < 5; i++){
-        recentlyImages.add("https://images.all-free-download.com/images/graphiclarge/two_small_birds_515951.jpg");
-        recentlyTitles.add("최근 순 타이틀");
-        recentlySubTitles.add("최근 순 서브타이틀,최근 순 서브타이틀,최근 순 서브타이틀,최근 순 서브타이틀,최근 순 서브타이틀");
+        itemsByRecently.add(
+            Item(itemsByRecently.length,
+                "좋은 물건입니다.$i",
+                "이 물건은  좋다 블라블라블라 $i",
+                "D-001$i",
+                "아디다스$i",
+                "https://images.all-free-download.com/images/graphiclarge/two_small_birds_515951.jpg",
+                [
+                  "https://images.all-free-download.com/images/graphiclarge/two_small_birds_515951.jpg",
+                  "https://images.all-free-download.com/images/graphiclarge/small_cookies_184538.jpg",
+                  "https://images.all-free-download.com/images/graphiclarge/two_small_birds_515951.jpg"
+                ],
+                "2개월",
+                "2020-05-11")
+        );
       }
     });
   }
@@ -204,9 +222,21 @@ class _DashBoardPageState extends State<DashBoardPage> {
   fetchRecommend() async{
     setState(() {
       for(int i = 0; i < 5; i++){
-        recommendImages.add("https://images.all-free-download.com/images/graphiclarge/goa_small_bird_202958.jpg");
-        recommendTitles.add("추천 순 타이틀");
-        recommendSubTitles.add("추천 순 서브타이틀,추천 순 서브타이틀,추천 순 서브타이틀,추천 순 서브타이틀,추천 순 서브타이틀");
+        itemsByRecommend.add(
+            Item(itemsByRecommend.length,
+                "좋지 않은 물건입니다.$i",
+                "이 물건은  좋지않다 블라블라블라 $i",
+                "A-001$i",
+                "루이비통$i",
+                "https://images.all-free-download.com/images/graphiclarge/goa_small_bird_202958.jpg",
+                [
+                  "https://images.all-free-download.com/images/graphiclarge/goa_small_bird_202958.jpg",
+                  "https://images.all-free-download.com/images/graphiclarge/goa_small_bird_202958.jpg",
+                  "https://images.all-free-download.com/images/graphiclarge/small_cookies_184538.jpg"
+                ],
+                "1개월",
+                "2020-05-21")
+        );
       }
     });
   }

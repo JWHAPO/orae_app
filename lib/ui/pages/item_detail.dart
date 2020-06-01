@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:oraeapp/domain/item.dart';
 
 class ItemDetailPage extends StatefulWidget {
-  final Map data;
+  final Item item;
 
-  ItemDetailPage({Key key, @required this.data});
+  ItemDetailPage({Key key, @required this.item});
 
   @override
   _ItemDetailPageState createState() => _ItemDetailPageState();
@@ -23,7 +24,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height*0.3,
                     child: ClipRRect(
-                      child: Image.network(widget.data['url'], fit: BoxFit.fill,),
+                      child: Image.network(widget.item.mainImage, fit: BoxFit.fill,),
                     ),
                   ),
                   Padding(
@@ -38,8 +39,8 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                 ],
               ),
               SizedBox(height: 6.0,),
-              Align(alignment: Alignment.centerLeft, child: Text(widget.data['title'], style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black87, fontSize: 16.0))),
-              Align(alignment: Alignment.centerLeft, child: Text(widget.data['subTitle'], style: TextStyle(color: Colors.black54, fontSize: 14.0),)),
+              Align(alignment: Alignment.centerLeft, child: Text(widget.item.name, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black87, fontSize: 16.0))),
+              Align(alignment: Alignment.centerLeft, child: Text(widget.item.description, style: TextStyle(color: Colors.black54, fontSize: 14.0),)),
               SizedBox(height: 10.0,)
             ],
           ),

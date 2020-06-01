@@ -14,6 +14,10 @@ class Item{
   String modelNo;
   @JsonKey(name: "maker")
   String maker;
+  @JsonKey(name: "mainImage")
+  String mainImage;
+  @JsonKey(name: "images")
+  List<String> images;
   @JsonKey(name: "averageExpectancy")
   String averageExpectancy;
   @JsonKey(name: "regDate")
@@ -21,7 +25,7 @@ class Item{
 
 
   Item(this.itemId, this.name, this.description, this.modelNo, this.maker,
-      this.averageExpectancy, this.regDate);
+      this.mainImage, this.images, this.averageExpectancy, this.regDate);
 
   factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
   Map<String, dynamic> toJson() => _$ItemToJson(this);

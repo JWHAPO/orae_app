@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:oraeapp/domain/item.dart';
 
-Widget itemList(BuildContext context, String imgUrl, String title, String subTitle){
+Widget itemList(BuildContext context, Item item){
 
   return GestureDetector(
     onTap: (){
-      var map = new Map();
-      map['url'] = imgUrl;
-      map['title'] = title;
-      map['subTitle'] = subTitle;
-
-      Navigator.pushNamed(context, 'item_detail', arguments: map);
+      Navigator.pushNamed(context, 'item_detail', arguments: item);
     },
     child: Container(
       padding: const EdgeInsets.only(left: 4, right: 4),
@@ -20,12 +16,12 @@ Widget itemList(BuildContext context, String imgUrl, String title, String subTit
             height: MediaQuery.of(context).size.height*0.3,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
-              child: Image.network(imgUrl, fit: BoxFit.fill,),
+              child: Image.network(item.mainImage, fit: BoxFit.fill,),
             ),
           ),
           SizedBox(height: 6.0,),
-          Align(alignment: Alignment.centerLeft, child: Text(title, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black87, fontSize: 16.0))),
-          Align(alignment: Alignment.centerLeft, child: Text(subTitle, style: TextStyle(color: Colors.black54, fontSize: 14.0),)),
+          Align(alignment: Alignment.centerLeft, child: Text(item.name, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black87, fontSize: 16.0))),
+          Align(alignment: Alignment.centerLeft, child: Text(item.description, style: TextStyle(color: Colors.black54, fontSize: 14.0),)),
           SizedBox(height: 10.0,)
         ],
       ),

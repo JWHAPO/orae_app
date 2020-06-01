@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oraeapp/domain/item.dart';
+import 'package:oraeapp/ui/widgets/image_pager.dart';
 
 class ItemDetailPage extends StatefulWidget {
   final Item item;
@@ -20,13 +21,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
             children: <Widget>[
               Stack(
                 children: <Widget>[
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height*0.3,
-                    child: ClipRRect(
-                      child: Image.network(widget.item.mainImage, fit: BoxFit.fill,),
-                    ),
-                  ),
+                  ImagePager(images: widget.item.images,),
                   Padding(
                     padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top, left: 10.0),
                     child: InkWell(

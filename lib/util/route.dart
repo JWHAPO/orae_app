@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:oraeapp/ui/page_view.dart';
 import 'package:oraeapp/ui/pages/item_detail.dart';
 
 import '../ui/home.dart';
@@ -12,8 +11,6 @@ class Router{
         return FadeRoute(page: HomePage());
       case 'item_detail':
         return FadeRoute(page: ItemDetailPage(item: settings.arguments,));
-      case 'pageview':
-        return FadeRoute(page: PageViewTest());
 
       default:
         return MaterialPageRoute(builder: (_) {

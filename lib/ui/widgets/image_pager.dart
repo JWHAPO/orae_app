@@ -105,7 +105,10 @@ class DotsIndicator extends AnimatedWidget {
             width: _kDotSize * zoom,
             height: _kDotSize * zoom,
             child: new InkWell(
-              onTap: () => onPageSelected(index),
+              onTap: () => onPageSelected(
+                  controller.page.ceil()<index?(controller.page+1).round():
+                  controller.page.floor()>index?(controller.page-1).round():
+                  controller.page.round()),
             ),
           ),
         ),

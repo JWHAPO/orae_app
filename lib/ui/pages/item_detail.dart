@@ -33,13 +33,20 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                   )
                 ],
               ),
-              SizedBox(height: 6.0,),
-              Align(alignment: Alignment.centerLeft, child: Text(widget.item.name, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black87, fontSize: 16.0))),
-              Align(alignment: Alignment.centerLeft, child: Text(widget.item.description, style: TextStyle(color: Colors.black54, fontSize: 14.0),)),
-              SizedBox(height: 10.0,)
+              Container(
+                padding: const EdgeInsets.all(10),
+                alignment: Alignment.topLeft,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(widget.item.name, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black87, fontSize: 16.0)),
+                    Text(widget.item.description, style: TextStyle(color: Colors.black54, fontSize: 14.0),),
+                    SizedBox(height: 10.0,)
+                  ],
+                )
+              )
             ],
           ),
-
         ),
       ),
     );

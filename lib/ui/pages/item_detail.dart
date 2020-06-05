@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oraeapp/domain/item.dart';
 import 'package:oraeapp/ui/widgets/image_pager.dart';
+import 'package:oraeapp/ui/widgets/tags.dart';
 
 class ItemDetailPage extends StatefulWidget {
   final Item item;
@@ -41,7 +42,8 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                   children: <Widget>[
                     Text(widget.item.name, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black87, fontSize: 16.0)),
                     Text(widget.item.description, style: TextStyle(color: Colors.black54, fontSize: 14.0),),
-                    SizedBox(height: 10.0,)
+                    SizedBox(height: 10.0,),
+                    tags(["선풍적인 인기", "건강식", "추천리스트"])
                   ],
                 )
               )

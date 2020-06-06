@@ -1,37 +1,38 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'maintenance.dart';
+part of 'task.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Maintenance _$MaintenanceFromJson(Map<String, dynamic> json) {
-  return Maintenance(
+Task _$TaskFromJson(Map<String, dynamic> json) {
+  return Task(
+    json['taskId'] as int,
     json['maintenanceId'] as int,
+    json['seq'] as int,
     json['description'] as String,
-    json['itemId'] as String,
-    json['userId'] as int,
-    json['usedCount'] as int,
+    json['cycle'] as int,
+    json['periodType'] as String,
     json['regDate'] as String,
   );
 }
 
-Map<String, dynamic> _$MaintenanceToJson(Maintenance instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$TaskToJson(Task instance) => <String, dynamic>{
+      'taskId': instance.taskId,
       'maintenanceId': instance.maintenanceId,
+      'seq': instance.seq,
       'description': instance.description,
-      'itemId': instance.itemId,
-      'userId': instance.userId,
-      'usedCount': instance.usedCount,
+      'cycle': instance.cycle,
+      'periodType': instance.periodType,
       'regDate': instance.regDate,
     };
 
-Maintenances _$MaintenancesFromJson(Map<String, dynamic> json) {
-  return Maintenances(
-    (json['maintenances'] as List)
-        ?.map((e) =>
-            e == null ? null : Maintenance.fromJson(e as Map<String, dynamic>))
+Tasks _$TasksFromJson(Map<String, dynamic> json) {
+  return Tasks(
+    (json['tasks'] as List)
+        ?.map(
+            (e) => e == null ? null : Task.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     json['page'] as int,
     json['totalResults'] as int,
@@ -40,9 +41,8 @@ Maintenances _$MaintenancesFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$MaintenancesToJson(Maintenances instance) =>
-    <String, dynamic>{
-      'maintenances': instance.maintenances,
+Map<String, dynamic> _$TasksToJson(Tasks instance) => <String, dynamic>{
+      'tasks': instance.tasks,
       'page': instance.page,
       'totalResults': instance.totalResults,
       'totalPages': instance.totalPages,

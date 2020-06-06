@@ -10,16 +10,16 @@ class Maintenance{
   String description;
   @JsonKey(name: "itemId")
   String itemId;
-  @JsonKey(name: "cycle")
-  String cycle;
-  @JsonKey(name: "periodType")
-  String periodType;
+  @JsonKey(name: "userId")
+  int userId;
+  @JsonKey(name: "usedCount")
+  int usedCount;
   @JsonKey(name: "regDate")
   String regDate;
 
 
-  Maintenance(this.maintenanceId, this.description, this.itemId, this.cycle,
-      this.periodType, this.regDate);
+  Maintenance(this.maintenanceId, this.description, this.itemId, this.userId,
+      this.usedCount, this.regDate);
 
   factory Maintenance.fromJson(Map<String, dynamic> json) => _$MaintenanceFromJson(json);
   Map<String, dynamic> toJson() => _$MaintenanceToJson(this);

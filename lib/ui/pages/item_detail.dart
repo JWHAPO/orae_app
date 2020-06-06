@@ -40,10 +40,15 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(widget.item.name, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black87, fontSize: 16.0)),
+                    Text(widget.item.name, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black87, fontSize: 20.0)),
+                    SizedBox(height: 6.0,),
+                    Text('${widget.item.modelNo}', style: TextStyle(color: Colors.black54, fontSize: 14.0),),
+                    SizedBox(height: 6.0,),
+                    Text('${widget.item.maker}', style: TextStyle(color: Colors.black54, fontSize: 14.0),),
+                    SizedBox(height: 6.0,),
                     Text(widget.item.description, style: TextStyle(color: Colors.black54, fontSize: 14.0),),
                     SizedBox(height: 10.0,),
-                    tags(["선풍적인 인기", "건강식", "추천리스트"])
+                    tags(["평균 3개월", "쉬움", "건조기", "찬물세탁"])
                   ],
                 )
               )

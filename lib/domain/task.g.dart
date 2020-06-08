@@ -14,6 +14,7 @@ Task _$TaskFromJson(Map<String, dynamic> json) {
     json['description'] as String,
     json['cycle'] as int,
     json['periodType'] as String,
+    (json['photos'] as List)?.map((e) => e as String)?.toList(),
     json['regDate'] as String,
   );
 }
@@ -25,6 +26,7 @@ Map<String, dynamic> _$TaskToJson(Task instance) => <String, dynamic>{
       'description': instance.description,
       'cycle': instance.cycle,
       'periodType': instance.periodType,
+      'photos': instance.photos,
       'regDate': instance.regDate,
     };
 

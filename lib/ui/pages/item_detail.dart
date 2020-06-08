@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:oraeapp/domain/item.dart';
+import 'package:oraeapp/domain/maintenance.dart';
+import 'package:oraeapp/domain/task.dart';
 import 'package:oraeapp/ui/widgets/image_pager.dart';
+import 'package:oraeapp/ui/widgets/maintenance_list.dart';
 import 'package:oraeapp/ui/widgets/tags.dart';
 
 class ItemDetailPage extends StatefulWidget {
@@ -13,11 +16,33 @@ class ItemDetailPage extends StatefulWidget {
 }
 
 class _ItemDetailPageState extends State<ItemDetailPage> {
+
+  ScrollController _scrollController = ScrollController();
+
+  List<Maintenance> maintenances = List();
+
+  @override
+  void initState() {
+    super.initState();
+    fetchMaintenances();
+
+    _scrollController.addListener(() {
+      if(_scrollController.position.pixels == _scrollController.position.maxScrollExtent){
+        fetchMaintenances();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
+      body: Container(
           child: Column(
             children: <Widget>[
               Stack(
@@ -48,14 +73,50 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                     SizedBox(height: 6.0,),
                     Text(widget.item.description, style: TextStyle(color: Colors.black54, fontSize: 14.0),),
                     SizedBox(height: 10.0,),
-                    tags(["평균 3개월", "쉬움", "건조기", "찬물세탁"])
+                    tags(["평균 3개월", "쉬움", "건조기", "찬물세탁"]),
+                    SizedBox(height: 4.0,),
+                    Divider(height: 1.0,color: Colors.grey,),
+                    SizedBox(height: 2.0,),
                   ],
                 )
+              ),
+              Expanded(
+                  child: ListView.builder(
+                    itemCount: maintenances.length,
+                    controller: _scrollController,
+                    itemBuilder: (BuildContext context, int index){
+                      return maintenanceList(context, maintenances[index]);
+                    },
+                  ),
               )
             ],
-          ),
         ),
       ),
     );
+  }
+
+  void fetchMaintenances() {
+    setState(() {
+      for(int i=0; i<5; i++){
+        maintenances.add(
+          Maintenance(
+            maintenances.length,
+            "title -- $i",
+            "description -- $i",
+            i,
+            i,
+            "Mr.Kim $i",
+            "https://www.lecturernews.com/news/photo/201904/17144_40358_215.jpg",
+            [
+              Task(i, i, i, "description", 1, "M", ["photos",""], "2020-05-04"),
+              Task(i, i, i, "description", 1, "M", ["photos",""], "2020-05-04"),
+            ],
+            1,
+            40,
+            "2020-04-55"
+          )
+        );
+      }
+    });
   }
 }

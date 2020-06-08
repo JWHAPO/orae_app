@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:oraeapp/domain/task.dart';
 
 part 'maintenance.g.dart';
 
@@ -6,20 +7,40 @@ part 'maintenance.g.dart';
 class Maintenance{
   @JsonKey(name: "maintenanceId")
   int maintenanceId;
+  @JsonKey(name: "title")
+  String title;
   @JsonKey(name: "description")
   String description;
   @JsonKey(name: "itemId")
-  String itemId;
+  int itemId;
   @JsonKey(name: "userId")
   int userId;
+  @JsonKey(name: "userName")
+  String userName;
+  @JsonKey(name: "userProfile")
+  String userProfile;
+  @JsonKey(name: "tasks")
+  List<Task> tasks;
+  @JsonKey(name: "avgPeriodDays")
+  int avgPeriodDays;
   @JsonKey(name: "usedCount")
   int usedCount;
   @JsonKey(name: "regDate")
   String regDate;
 
 
-  Maintenance(this.maintenanceId, this.description, this.itemId, this.userId,
-      this.usedCount, this.regDate);
+  Maintenance(
+      this.maintenanceId,
+      this.title,
+      this.description,
+      this.itemId,
+      this.userId,
+      this.userName,
+      this.userProfile,
+      this.tasks,
+      this.avgPeriodDays,
+      this.usedCount,
+      this.regDate);
 
   factory Maintenance.fromJson(Map<String, dynamic> json) => _$MaintenanceFromJson(json);
   Map<String, dynamic> toJson() => _$MaintenanceToJson(this);

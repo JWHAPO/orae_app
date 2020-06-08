@@ -16,12 +16,14 @@ class Task{
   int cycle;
   @JsonKey(name: "periodType")
   String periodType;
+  @JsonKey(name: "photos")
+  List<String> photos;
   @JsonKey(name: "regDate")
   String regDate;
 
 
   Task(this.taskId, this.maintenanceId, this.seq, this.description, this.cycle,
-      this.periodType, this.regDate);
+      this.periodType, this.photos, this.regDate);
 
   factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
   Map<String, dynamic> toJson() => _$TaskToJson(this);

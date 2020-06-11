@@ -101,8 +101,8 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
         maintenances.add(
           Maintenance(
             maintenances.length,
-            "title -- $i",
-            "description -- $i",
+            "title $i",
+            "description  $i",
             i,
             i,
             "Mr.Kim $i",

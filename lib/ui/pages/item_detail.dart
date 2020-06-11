@@ -76,17 +76,20 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                     tags(["평균 3개월", "쉬움", "건조기", "찬물세탁"]),
                     SizedBox(height: 4.0,),
                     Divider(height: 1.0,color: Colors.grey,),
-                    SizedBox(height: 2.0,),
                   ],
                 )
               ),
               Expanded(
-                  child: ListView.builder(
-                    itemCount: maintenances.length,
-                    controller: _scrollController,
-                    itemBuilder: (BuildContext context, int index){
-                      return maintenanceList(context, maintenances[index]);
-                    },
+                  child: MediaQuery.removePadding(
+                    removeTop: true,
+                    context: context,
+                    child: ListView.builder(
+                      itemCount: maintenances.length,
+                      controller: _scrollController,
+                      itemBuilder: (BuildContext context, int index){
+                        return maintenanceList(context, maintenances[index]);
+                      },
+                    ),
                   ),
               )
             ],

@@ -12,7 +12,6 @@ Widget maintenanceList(BuildContext context, Maintenance maintenance){
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.only(left: 4, right: 4),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           Column(
             children: <Widget>[
@@ -44,6 +43,7 @@ Widget maintenanceList(BuildContext context, Maintenance maintenance){
               ],
             ),
           ),
+          Spacer(),
           Container(
             child: Column(
               children: <Widget>[
@@ -51,7 +51,8 @@ Widget maintenanceList(BuildContext context, Maintenance maintenance){
                 Text('Used')
               ],
             ),
-          )
+          ),
+          SizedBox(width: 10.0,)
         ],
       ),
     ),

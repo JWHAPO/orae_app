@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'tab/bottom_navigation_items.dart';
 import 'package:oraeapp/constants/strings.dart';
 import 'package:oraeapp/ui/pages/dash_board.dart';
+import 'package:oraeapp/ui/pages/search_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class _HomePageState extends State<HomePage> {
 
   List pages = [
     DashBoardPage(),
-    Text('검색할 수 있는 것들 검색어 등등'),
+    SearchPage(),
     Text('나의 일정'),
     Text('관심 항목들'),
     Text('설정'),

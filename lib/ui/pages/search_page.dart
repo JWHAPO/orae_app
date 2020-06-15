@@ -8,7 +8,35 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
 
   TextEditingController _textController = TextEditingController();
-  List<String> dataList = List();
+  static List<String> mainDataList = [
+    "Apple",
+    "Apricot",
+    "Banana",
+    "Blackberry",
+    "Coconut",
+    "Date",
+    "Fig",
+    "Gooseberry",
+    "Grapes",
+    "Lemon",
+    "Litchi",
+    "Mango",
+    "Orange",
+    "Papaya",
+    "Peach",
+    "Pineapple",
+    "Pomegranate",
+    "Starfruit"
+  ];
+  List<String> newDataList = List.from(mainDataList);
+
+  onItemChanged(String value){
+    setState(() {
+      newDataList = mainDataList.where((string) => string.toLowerCase().contains(value.toLowerCase())).toList();
+    });
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +51,13 @@ class _SearchPageState extends State<SearchPage> {
                 prefixIcon: Icon(Icons.search),
                 hintText: 'Search here..',
               ),
-              onChanged: (data){
-
-              },
+              onChanged: onItemChanged,
             ),
           ),
           Expanded(
             child: ListView(
               padding: EdgeInsets.all(12.0),
-              children: dataList.map((data) => ListTile(
+              children: newDataList.map((data) => ListTile(
                 title: Text(data),
                 onTap: () => print(data),
               )).toList()

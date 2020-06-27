@@ -83,7 +83,10 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                   child: MediaQuery.removePadding(
                     removeTop: true,
                     context: context,
-                    child: ListView.builder(
+                    child: ListView.separated(
+                      separatorBuilder: (context, index) => Divider(
+                        color: Colors.black12,
+                      ),
                       itemCount: maintenances.length,
                       controller: _scrollController,
                       itemBuilder: (BuildContext context, int index){

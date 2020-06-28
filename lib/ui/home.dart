@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oraeapp/ui/pages/schedule_page.dart';
 
 import 'tab/bottom_navigation_items.dart';
 import 'package:oraeapp/constants/strings.dart';
@@ -17,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   List pages = [
     DashBoardPage(),
     SearchPage(),
-    Text('나의 일정'),
+    SchedulePage(),
     Text('관심 항목들'),
     Text('설정'),
   ];

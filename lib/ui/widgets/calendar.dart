@@ -67,7 +67,7 @@ class _CalendarState extends State<Calendar> {
             formatButtonVisible: false,
             centerHeaderTitle: true,
             titleTextBuilder: (date, locale){
-              return DateFormat.yMMM(locale).format(date);
+              return DateFormat.yM(locale).format(date);
             },
           ),
           daysOfWeekStyle: DaysOfWeekStyle(
@@ -102,8 +102,7 @@ class _CalendarState extends State<Calendar> {
             }
           ),
         ),
-        const SizedBox(height: 8.0,),
-        _buildButtons(),
+        Divider(color: Colors.black12,),
         const SizedBox(height: 8.0,),
         Expanded(child: _buildEventList(),)
       ],
